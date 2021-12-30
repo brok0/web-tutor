@@ -1,4 +1,4 @@
-import Header from "../Header";
+import Header from "../../components/Header";
 import SearchBar from "./components/SearchBar";
 import TutorList from "./components/TutorList";
 import Head from "next/head";

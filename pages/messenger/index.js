@@ -1,4 +1,4 @@
-import Header from "../Header";
+import Header from "../../components/Header";
 import PageHeader from "../profile/components/PageHeader";
 import ConversationList from "./components/ConversationList";
 import MessageInput from "./components/MessageInput";
