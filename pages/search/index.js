@@ -18,7 +18,7 @@ export default function SearchPage() {
 				/>
 			</Head>
 			<main>
-				<div className="px-8">
+				<div className="md:px-8 sm:px-1">
 					<Header />
 					<div className="container px-4 m-auto">
 						<h1>This is Search Page</h1>

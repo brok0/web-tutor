@@ -6,7 +6,7 @@ export default function MessageList({ messages }) {
 		<div className="border w-4/6 h-(msngr-height) w-(msngr-width)">
 			<ul>
 				{messages ? (
-					messages.messages.map((data) => (
+					messages.map((data) => (
 						<li>
 							<Message data={data} />
 						</li>

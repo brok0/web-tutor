@@ -23,25 +23,23 @@ export default function Lessons() {
 		},
 	];
 	return (
-		<div>
-			<div className="h-64 mt-8 flex justify-around">
-				<div className="w-full center ml-4">
-					<h1>Upcoming</h1>
-					<hr className="w-1/3" />
-					<div>
-						{lessons.map((lesson) => (
-							<Lesson lesson={lesson} />
-						))}
-					</div>
+		<div className="h-64  mt-8 md:flex md:justify-around">
+			<div className="w-full center md:ml-4 ">
+				<h1>Upcoming</h1>
+				<hr className="w-1/3" />
+				<div>
+					{lessons.map((lesson) => (
+						<Lesson lesson={lesson} />
+					))}
 				</div>
-				<div className="w-full">
-					<h1>Finished</h1>
-					<hr className="w-1/3" />
-					<div>
-						{lessons.map((lesson) => (
-							<Lesson lesson={lesson} />
-						))}
-					</div>
+			</div>
+			<div className="w-full">
+				<h1>Finished</h1>
+				<hr className="w-1/3" />
+				<div>
+					{lessons.map((lesson) => (
+						<Lesson lesson={lesson} />
+					))}
 				</div>
 			</div>
 		</div>
