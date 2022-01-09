@@ -1,14 +1,16 @@
 import Conversation from "./Conversation";
-import { actions } from "../services/state/messenger-actions";
 
-export default function ConversationList({ conversations, dispatch }) {
+export default function ConversationList({ conversations, handleChange }) {
 	return (
 		<div>
 			<ul>
 				{conversations ? (
 					conversations.map((data) => (
 						<li>
-							<div onClick={dispatch(actions.changeGroup(data.convId))}>
+							<div>
+								{
+									// onClick={handleChange(data.convId)}>
+								}
 								<Conversation data={data} />
 							</div>
 						</li>

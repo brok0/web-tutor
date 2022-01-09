@@ -7,11 +7,13 @@ export default function PageHeader() {
 				<Link href="/messenger" className="inline-block">
 					Messages
 				</Link>
-				<Link href="/" className="inline-block">
+				<Link href="/profile/lessons" className="inline-block">
 					Lessons
 				</Link>
 
-				<Link href="/">Setting</Link>
+				<Link href="" className="opacity-75">
+					Setting
+				</Link>
 			</div>
 		</div>
 	);

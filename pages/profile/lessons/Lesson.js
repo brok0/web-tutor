@@ -6,11 +6,11 @@ export default function Lesson({ lesson }) {
 	const resolveLessonState = () => {
 		switch (state) {
 			case CONSTANTS.lessonStates.active:
-				return <div>{date}</div>;
+				return <div className="text-yellow-300">{date}</div>;
 			case CONSTANTS.lessonStates.cancelled:
-				return <div>Canceled</div>;
+				return <div className="text-red-500">Canceled</div>;
 			case CONSTANTS.lessonStates.finished:
-				return <div>Finished</div>; /// TODO : ADD ICONS
+				return <div className="text-green-300">Finished</div>; /// TODO : ADD ICONS
 			default:
 				break;
 		}
@@ -25,8 +25,9 @@ export default function Lesson({ lesson }) {
 					<strong>Topic</strong> : {topic}
 				</h2>
 			</div>
-
-			{resolveLessonState()}
+			<div className="mt-auto mb-auto rounded-full border-gray-400 border-2 p-2 font-bold">
+				{resolveLessonState()}
+			</div>
 		</div>
 	);
 }

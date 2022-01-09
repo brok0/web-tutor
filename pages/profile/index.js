@@ -1,10 +1,10 @@
-import Header from "../../components/Header";
-import Lessons from "./components/Lessons/Lessons";
-import PageHeader from "./components/PageHeader";
+import Lessons from "./lessons";
 import { useSession } from "next-auth/react";
 import Login from "../../components/Login";
+import withHeader from "../../components/withHeader";
+import PageHeader from "./components/PageHeader";
 
-export default function ProfilePage() {
+function ProfilePage() {
 	const { data: session, status } = useSession({
 		required: true,
 		onUnauthenticated() {
@@ -13,10 +13,8 @@ export default function ProfilePage() {
 	});
 
 	return (
-		<div className="px-8">
-			<Header />
+		<div>
 			<PageHeader />
-			<Lessons />
 		</div>
 	);
 }
@@ -25,3 +23,5 @@ ProfilePage.auth = {
 	loading: <div>Loading</div>,
 	unauthorized: "/redirect-here",
 };
+
+export default withHeader(ProfilePage);
