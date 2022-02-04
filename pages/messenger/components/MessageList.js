@@ -1,7 +1,6 @@
 import Message from "./Message";
 
 export default function MessageList({ messages }) {
-	console.log(messages);
 	return (
 		<div className="border w-4/6 h-(msngr-height) w-(msngr-width)">
 			<ul>

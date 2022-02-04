@@ -6,11 +6,8 @@ export default function ConversationList({ conversations, handleChange }) {
 			<ul>
 				{conversations ? (
 					conversations.map((data) => (
-						<li>
-							<div>
-								{
-									// onClick={handleChange(data.convId)}>
-								}
+						<li key={data.id}>
+							<div onClick={() => handleChange(data.id)}>
 								<Conversation data={data} />
 							</div>
 						</li>

@@ -1,12 +1,12 @@
 const actionType = {
-	CHANGE_GROUP: "CHANGE GROUP",
+	CHANGE_CONVERSATION: "CHANGE CONVERSATION",
 };
 
 const actions = {};
 
-actions.changeGroup = (groupId) => ({
-	type: actionType.CHANGE_GROUP,
-	payload: groupId,
+actions.changeConversation = (id) => ({
+	type: actionType.CHANGE_CONVERSATION,
+	id,
 });
 
 export { actionType, actions };

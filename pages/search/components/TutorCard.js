@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { CreateConversation } from "./CreateConversation";
 import DateTimePickerModal from "./DateTimePickerModal";
 
 export default function TutorCard({ tutor }) {
 	const { name, rating, specialization, description, price } = tutor;
-	const [dateTimeModalOpen, setModalOpen] = useState(false);
+	const [modalsOpen, setModalsOpen] = useState({
+		conversationModal: false,
+		datePickerModal: false,
+	});
 
 	const cutDescription = () => {
 		const maxLength = 250;
@@ -13,10 +17,25 @@ export default function TutorCard({ tutor }) {
 		} else return description;
 	};
 
-	const toggleDateTime = () => {
-		setModalOpen(!dateTimeModalOpen);
+	const openDatePicker = () => {
+		setModalsOpen({
+			...modalsOpen,
+			datePickerModal: true,
+		});
+	};
+	const openCreateConversations = () => {
+		setModalsOpen({
+			...modalsOpen,
+			conversationModal: true,
+		});
 	};
 
+	const closeModals = () => {
+		setModalsOpen({
+			conversationModal: false,
+			datePickerModal: false,
+		});
+	};
 	return (
 		<div className="container w-full p-2 bg-white rounded m-auto md:justify-between mb-2 md:flex">
 			<div id="tutorInfo" className="my-auto mb-2 md:ml-3">
@@ -45,22 +64,30 @@ export default function TutorCard({ tutor }) {
 					{price}$/hour
 				</h3>
 				<button
-					onClick={toggleDateTime}
+					onClick={openDatePicker}
 					className="w-24 h-8 bg-purple-300 rounded hover:bg-purple-500 m-1 md:my-auto text-xs bold"
 				>
 					Buy Lesson
 				</button>
-				<button className="w-24 h-8 bg-gray-300 rounded hover:bg-purple-500 m-1 md:my-auto text-xs bold">
+				<button
+					onClick={openCreateConversations}
+					className="w-24 h-8 bg-gray-300 rounded hover:bg-purple-500 m-1 md:my-auto text-xs bold"
+				>
 					Write Message
 				</button>
 			</div>
 
-			{dateTimeModalOpen ? (
+			{modalsOpen.datePickerModal ? (
 				<DateTimePickerModal
-					onClose={toggleDateTime}
+					onClose={closeModals}
 					lesson={specialization}
 					price={price}
 				/>
+			) : (
+				""
+			)}
+			{modalsOpen.conversationModal ? (
+				<CreateConversation onClose={closeModals} tutor={name} />
 			) : (
 				""
 			)}

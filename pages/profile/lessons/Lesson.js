@@ -1,7 +1,10 @@
 import CONSTANTS from "./constants";
+import LessonDetails from "./components/LessonDetails";
+import { useState } from "react";
 
 export default function Lesson({ lesson }) {
 	const { tutor, topic, date, state } = lesson;
+	const [open, setOpen] = useState(false);
 
 	const resolveLessonState = () => {
 		switch (state) {
@@ -15,8 +18,16 @@ export default function Lesson({ lesson }) {
 				break;
 		}
 	};
+
+	const toggleDetailsModal = () => {
+		setOpen(!open);
+	};
+
 	return (
-		<div className="container w-11/12 rounded border-black border-2 m-2 p-2 cursor-pointer hover:bg-gray-200 md:flex md:justify-between">
+		<div
+			className="container w-11/12 rounded border-black border-2 m-2 p-2 cursor-pointer hover:bg-gray-200 md:flex md:justify-between"
+			onClick={toggleDetailsModal}
+		>
 			<div>
 				<h2>
 					<strong>Tutor</strong> : {tutor}
@@ -28,6 +39,12 @@ export default function Lesson({ lesson }) {
 			<div className="mt-auto mb-auto rounded-full border-gray-400 border-2 p-2 font-bold">
 				{resolveLessonState()}
 			</div>
+
+			{open ? (
+				<LessonDetails onClose={toggleDetailsModal} lesson={lesson} />
+			) : (
+				""
+			)}
 		</div>
 	);
 }

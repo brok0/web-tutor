@@ -1,6 +1,7 @@
 import PageHeader from "../components/PageHeader";
 import CONSTANTS from "./constants";
 import Lesson from "./Lesson";
+import Head from "next/head";
 
 export default function Lessons() {
 	const lessons = [
@@ -25,31 +26,46 @@ export default function Lessons() {
 	];
 	return (
 		<div>
-			<PageHeader />
-			<div className="h-64  mt-8 md:flex md:justify-around">
-				<div className="w-full center md:ml-4 ">
-					<h1>Upcoming</h1>
-					<hr className="w-1/3" />
-					<div>
-						{lessons
-							.filter((lesson) => lesson.state === "Active")
-							.map((lesson) => (
-								<Lesson lesson={lesson} />
-							))}
+			<Head>
+				<title>Your lessons</title>
+				<meta name="description" content="" />
+				<link rel="icon" href="/favicon.ico" />
+				<link
+					rel="stylesheet"
+					href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+					integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+					crossorigin="anonymous"
+				/>
+			</Head>
+			<main>
+				<div>
+					<PageHeader />
+					<div className="h-64  mt-8 md:flex md:justify-around">
+						<div className="w-full center md:ml-4 ">
+							<h1>Upcoming</h1>
+							<hr className="w-1/3" />
+							<div>
+								{lessons
+									.filter((lesson) => lesson.state === "Active")
+									.map((lesson) => (
+										<Lesson lesson={lesson} />
+									))}
+							</div>
+						</div>
+						<div className="w-full">
+							<h1>Finished</h1>
+							<hr className="w-1/3" />
+							<div>
+								{lessons
+									.filter((lesson) => lesson.state !== "Active")
+									.map((lesson) => (
+										<Lesson lesson={lesson} />
+									))}
+							</div>
+						</div>
 					</div>
 				</div>
-				<div className="w-full">
-					<h1>Finished</h1>
-					<hr className="w-1/3" />
-					<div>
-						{lessons
-							.filter((lesson) => lesson.state !== "Active")
-							.map((lesson) => (
-								<Lesson lesson={lesson} />
-							))}
-					</div>
-				</div>
-			</div>
+			</main>
 		</div>
 	);
 }

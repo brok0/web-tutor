@@ -1,5 +1,4 @@
 import { useReducer } from "react";
-import Header from "../../components/Header";
 import PageHeader from "../profile/components/PageHeader";
 import ConversationList from "./components/ConversationList";
 import MessageInput from "./components/MessageInput";
@@ -9,19 +8,26 @@ import reducer from "./services/state/messenger-reducer";
 import { actions } from "./services/state/messenger-actions";
 import withHeader from "../../components/withHeader";
 
-const initialState = { currentGroup: messages[0] };
+const initialState = { currentConversation: messages[0] };
 
 function Messenger() {
 	const [state, dispatch] = useReducer(reducer, initialState);
+
+	const changeConversation = (id) => {
+		dispatch(actions.changeConversation(id));
+	};
 
 	return (
 		<div>
 			<PageHeader />
 
 			<div className="flex">
-				<ConversationList conversations={conversations} />
+				<ConversationList
+					conversations={conversations}
+					handleChange={changeConversation}
+				/>
 				<div className="ml-2">
-					<MessageList messages={state.currentGroup?.messages} />
+					<MessageList messages={state.currentConversation?.messages} />
 					<MessageInput />
 				</div>
 			</div>
