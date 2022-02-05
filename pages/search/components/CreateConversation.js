@@ -26,25 +26,28 @@ export const CreateConversation = ({ onClose, tutor }) => {
 								className="text-lg leading-6 font-medium text-gray-900 border-b-2 mb-2 text-center"
 								id="modal-title"
 							>
-								You can start conversation with {tutor}
+								Start your conversation with {tutor}
 							</h3>
 							<p className="opacity-75 text-sm pb-2 w-4/5 text-center m-auto">
 								Tell tutor about yourself and what do you expect from studying
 							</p>
-							<textarea className="rounded border resize-none w-full"></textarea>
-							<div className="flex align-end">
-								<button
-									type="button"
-									className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-purple-400 text-base font-medium text-gray-700 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-								>
-									Send Message
-								</button>
+							<textarea
+								placeholder="Example - I want to study English to get to work abroad"
+								className="rounded border resize-none w-full text-sm p-2 italic"
+							></textarea>
+							<div className="flex justify-end">
 								<button
 									type="button"
 									className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
 									onClick={onClose}
 								>
 									Close
+								</button>
+								<button
+									type="button"
+									className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-purple-400 text-base font-medium text-gray-700 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+								>
+									Send Message
 								</button>
 							</div>
 						</div>
