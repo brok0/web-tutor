@@ -8,6 +8,8 @@ export default function reducer(state, action) {
 
 			return { ...state, currentConversation: messages[index] };
 		}
+
+		//send message
 		default: {
 			throw new Error();
 		}
