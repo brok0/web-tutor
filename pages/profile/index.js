@@ -11,9 +11,11 @@ function ProfilePage() {
 			return <Login />;
 		},
 	});
+	console.log(session);
 
 	return (
 		<div>
+			<h2>Welcome {session.user.name}</h2>
 			<PageHeader />
 		</div>
 	);
@@ -21,7 +23,7 @@ function ProfilePage() {
 
 ProfilePage.auth = {
 	loading: <div>Loading</div>,
-	unauthorized: "/redirect-here",
+	unauthorized: "/error",
 };
 
-export default withHeader(ProfilePage);
+export default ProfilePage;

@@ -10,8 +10,8 @@ export default function Header() {
 					Find tutor
 				</Link>
 				{/*href="/register/tutor" */}
-				<Link href="" className="inline-block">
-					<p className="inline-block opacity-40">Become tutor</p>
+				<Link href="tutor/createTutor" className="inline-block">
+					<p className="inline-block ">Become tutor</p>
 				</Link>
 				<div className="ml-auto mr-5">
 					<Link href="/profile">Sign In</Link>
