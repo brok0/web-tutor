@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { selectUser } from "../store/appReducer";
 
 export default function Header() {
+	const user = useSelector(selectUser);
+	console.log(user);
 	return (
 		<div className="relative bg-white border-gray-300 border-b mb-2">
 			<div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
@@ -14,7 +18,11 @@ export default function Header() {
 					<p className="inline-block ">Become tutor</p>
 				</Link>
 				<div className="ml-auto mr-5">
-					<Link href="/profile">Sign In</Link>
+					{user ? (
+						<Link href="/profile">Profile</Link>
+					) : (
+						<Link href="/profile">Sign In</Link>
+					)}
 				</div>
 			</div>
 		</div>

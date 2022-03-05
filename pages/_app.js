@@ -1,21 +1,25 @@
 import "../styles/globals.css";
 import React from "react";
 import { SessionProvider, signIn, useSession } from "next-auth/react";
+import store from "../store/store";
+import { Provider } from "react-redux";
 
 export default function App({
 	Component,
 	pageProps: { session, ...pageProps },
 }) {
 	return (
-		<SessionProvider session={session}>
-			{Component.auth ? (
-				<Auth>
+		<Provider store={store}>
+			<SessionProvider session={session}>
+				{Component.auth ? (
+					<Auth>
+						<Component {...pageProps} />
+					</Auth>
+				) : (
 					<Component {...pageProps} />
-				</Auth>
-			) : (
-				<Component {...pageProps} />
-			)}
-		</SessionProvider>
+				)}
+			</SessionProvider>
+		</Provider>
 	);
 }
 
