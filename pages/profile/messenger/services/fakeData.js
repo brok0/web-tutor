@@ -1,16 +1,21 @@
 const conversations = [
-	{ id: 1, name: "John Doe", lastMessage: "Helloo!", imgUrl: "./дендімон.png" },
+	{
+		id: 1,
+		name: "John Doe",
+		lastMessage: "Helloo!",
+		imgUrl: "../../дендімон.png",
+	},
 	{
 		id: 2,
 		name: "John Way",
 		lastMessage: "What about evening",
-		imgUrl: "./дендімон.png",
+		imgUrl: "../../дендімон.png",
 	},
 	{
 		id: 3,
 		name: "Bruce Wayne",
 		lastMessage: "No we dont do this here",
-		imgUrl: "./дендімон.png",
+		imgUrl: "../../дендімон.png",
 	},
 ];
 // how to better specify who sended message?

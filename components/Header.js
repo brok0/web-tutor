@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { selectUser } from "../store/appReducer";
-
+import { useSession } from "next-auth/react";
 export default function Header() {
-	const user = useSelector(selectUser);
-	console.log(user);
+	const { data: session, status } = useSession();
+
+	const isLoggedIn = status === "authenticated";
 	return (
 		<div className="relative bg-white border-gray-300 border-b mb-2">
 			<div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
@@ -14,11 +15,11 @@ export default function Header() {
 					Find tutor
 				</Link>
 				{/*href="/register/tutor" */}
-				<Link href="tutor/createTutor" className="inline-block">
-					<p className="inline-block ">Become tutor</p>
+				<Link href="tutor/createTutor" className="inline-block ">
+					<p className="inline-block  ">Become tutor</p>
 				</Link>
-				<div className="ml-auto mr-5">
-					{user ? (
+				<div className="ml-auto mr-5 font-semibold">
+					{isLoggedIn ? (
 						<Link href="/profile">Profile</Link>
 					) : (
 						<Link href="/profile">Sign In</Link>

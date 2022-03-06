@@ -19,7 +19,7 @@ export default function SearchBar() {
 					<Dropdown optionsList={timeOptions}></Dropdown>
 				</div>
 				<div className="m-auto my-2 md:my-auto">
-					<button className="w-16 h-8 bg-purple-300 rounded hover:bg-purple-500 my-auto">
+					<button className="w-16 h-8 bg-purple-300 rounded hover:bg-purple-500 my-auto font-semibold">
 						Search
 					</button>
 				</div>

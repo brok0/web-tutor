@@ -4,7 +4,7 @@ module.exports = {
 	theme: {
 		extend: {
 			height: {
-				"(msngr-height)": "calc(100vh - 13rem)",
+				"(msngr-height)": "calc(100vh - 8rem)",
 			},
 			width: {
 				"(msngr-width)": "calc(100vw - 20rem)",

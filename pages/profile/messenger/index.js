@@ -1,12 +1,11 @@
 import { useReducer } from "react";
-import PageHeader from "../profile/components/PageHeader";
+import PageHeader from "../components/PageHeader";
 import ConversationList from "./components/ConversationList";
 import MessageInput from "./components/MessageInput";
 import MessageList from "./components/MessageList";
 import { conversations, messages } from "./services/fakeData";
 import reducer from "./services/state/messenger-reducer";
 import { actions } from "./services/state/messenger-actions";
-import withHeader from "../../components/withHeader";
 
 const initialState = { currentConversation: messages[0] };
 
@@ -21,7 +20,7 @@ function Messenger() {
 		<div>
 			<PageHeader />
 
-			<div className="flex">
+			<div className="flex mx-3 my-1">
 				<ConversationList
 					conversations={conversations}
 					handleChange={changeConversation}
@@ -35,4 +34,4 @@ function Messenger() {
 	);
 }
 
-export default withHeader(Messenger);
+export default Messenger;

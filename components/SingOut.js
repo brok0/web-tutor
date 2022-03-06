@@ -2,7 +2,7 @@ import { signOut } from "next-auth/react";
 
 export default () => (
 	<button
-		class="p-1 border rounded bg-red-500 text-white font-bold"
+		className="p-1 border rounded bg-red-500 text-white font-bold"
 		onClick={() => signOut({ callbackUrl: "http://localhost:3000/search" })}
 	>
 		Sign out

@@ -1,10 +1,12 @@
 import Link from "next/dist/client/link";
-
+import { useSession } from "next-auth/react";
 export default function PageHeader() {
+	const { data: session, status } = useSession();
+
 	return (
 		<div className="relative bg-gray-500">
-			<div className="flex flex-col justify-between items-center border-b-2 border-gray-100 p-6 md:flex-row md:justify-start md:space-x-10">
-				<Link href="/messenger" className="inline-block">
+			<div className="flex flex-col items-center border-b-2 border-gray-100 p-6 md:flex-row md:justify-start md:space-x-10">
+				<Link href="/profile/messenger" className="inline-block">
 					Messages
 				</Link>
 				<Link href="/profile/lessons" className="inline-block">
@@ -14,6 +16,21 @@ export default function PageHeader() {
 				<Link href="" className="opacity-75">
 					Setting
 				</Link>
+				<div className="">
+					<Link href="/search">
+						<p className="text-white ">Get back to search</p>
+					</Link>
+				</div>
+				<div className="m-auto">
+					{status === "authenticated" ? (
+						<div>
+							<img className="rounded w-8" src={session.user.image} />{" "}
+							<p className="text-white text-xs">{session.user.name}</p>
+						</div>
+					) : (
+						""
+					)}
+				</div>
 			</div>
 		</div>
 	);
