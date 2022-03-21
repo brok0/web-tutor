@@ -1,7 +1,5 @@
-import Lessons from "./lessons";
 import { useSession } from "next-auth/react";
 import Login from "../../components/Login";
-import withHeader from "../../components/withHeader";
 import PageHeader from "./components/PageHeader";
 function ProfilePage() {
 	const { data: session, status } = useSession({
@@ -10,7 +8,6 @@ function ProfilePage() {
 			return <Login />;
 		},
 	});
-	console.log(session);
 
 	return (
 		<div>

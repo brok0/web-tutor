@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { selectUser } from "../store/appReducer";
 import { useSession } from "next-auth/react";
 export default function Header() {
 	const { data: session, status } = useSession();
@@ -16,7 +14,7 @@ export default function Header() {
 				</Link>
 				{/*href="/register/tutor" */}
 				<Link href="tutor/createTutor" className="inline-block ">
-					<p className="inline-block  ">Become tutor</p>
+					<p className="inline-block cursor-pointer ">Become tutor</p>
 				</Link>
 				<div className="ml-auto mr-5 font-semibold">
 					{isLoggedIn ? (

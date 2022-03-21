@@ -1,9 +1,9 @@
 import { signIn } from "next-auth/react";
-
 export default function Login() {
 	const handleLogin = (e) => {
 		e.preventDefault();
 		const data = signIn("google");
+
 		console.log("after login" + data);
 	};
 	return (

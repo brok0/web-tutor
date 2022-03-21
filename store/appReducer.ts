@@ -3,11 +3,13 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppState, AppThunk } from './store'
 
 export interface GlobalState {
+  baseServiceUrl: string
   user : Object
 }
 
 const initialState = {
-	user : {}
+	user : {},
+	baseServiceUrl:'http://localhost:3000/api'
 };
 
 
@@ -16,7 +18,9 @@ export const userSlice = createSlice({
 	initialState,
 	// The `reducers` field lets us define reducers and generate associated actions
 	reducers: {
-		setUser: (state,action) =>{
+		setUser: (state,action) => {
+			//todo : make request to db to get user id
+			console.log(action)
 			state.user = action.payload
 		}
 		
@@ -31,3 +35,4 @@ export const { setUser } = userSlice.actions;
 export const selectUser = (state: AppState) => state.user;
 
 export default userSlice.reducer;
+

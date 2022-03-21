@@ -2,6 +2,7 @@ import Link from "next/dist/client/link";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import ProfileOptions from "./ProfileOptions";
+
 export default function PageHeader() {
 	const { data: session, status } = useSession();
 	const [open, setOpen] = useState(false);
@@ -9,9 +10,10 @@ export default function PageHeader() {
 	const toggleOpen = () => {
 		setOpen(!open);
 	};
+
 	return (
 		<div className="relative bg-gray-500">
-			<div className="flex flex-col items-center border-b-2 border-gray-100 p-6 md:flex-row md:justify-start md:space-x-10">
+			<div className="flex flex-col items-center border-b-2 border-gray-100 px-6 md:flex-row md:justify-start md:space-x-10">
 				<Link href="/profile/messenger" className="inline-block">
 					Messages
 				</Link>

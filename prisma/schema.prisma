@@ -101,6 +101,7 @@ model Tutor {
   specialization String
   rating         Int
   avatar         String?
+  pricePerLesson Decimal
 
   lessons      Lesson[]
   conversation Conversation[]
