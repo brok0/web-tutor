@@ -3,7 +3,9 @@ import { CreateConversation } from "./CreateConversation";
 import DateTimePickerModal from "./DateTimePickerModal";
 
 export default function TutorCard({ tutor }) {
-	const { name, rating, specialization, description, price } = tutor;
+	const { name, rating, specialization, description, pricePerLesson, avatar } =
+		tutor;
+
 	const [modalsOpen, setModalsOpen] = useState({
 		conversationModal: false,
 		datePickerModal: false,
@@ -41,7 +43,7 @@ export default function TutorCard({ tutor }) {
 			<div id="tutorInfo" className="my-auto mb-2 md:ml-3">
 				<img
 					alt="profilepicture"
-					src="./дендімон.png"
+					src={avatar}
 					className="w-16 h-16 rounded"
 				></img>
 				<div className="flex ml-3">
@@ -61,7 +63,7 @@ export default function TutorCard({ tutor }) {
 			<div id="buttons" className="flex md:flex-col">
 				<h3>
 					<strong>Price: </strong>
-					{price}$/hour
+					{pricePerLesson}$/hour
 				</h3>
 				<button
 					onClick={openDatePicker}

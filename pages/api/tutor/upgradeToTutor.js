@@ -5,6 +5,7 @@ export default async (req, res) => {
 	const { description, specialization, price, email } = req.body;
 
 	try {
+		const user = await prisma.user.findFirst({ where: { email: email } });
 		const upgradeUser = await prisma.tutor.create({
 			data: {
 				user: {
@@ -17,6 +18,7 @@ export default async (req, res) => {
 				specialization: specialization,
 				pricePerLesson: price,
 				rating: 0,
+				avatar: user.image,
 			},
 		});
 

@@ -37,7 +37,7 @@ export default function PageHeader() {
 								src={session.user.image}
 								onClick={toggleOpen}
 							/>
-							{open ? <ProfileOptions /> : ""}
+							{open && <ProfileOptions />}
 							<p className="text-white text-xs">{session.user.name}</p>
 						</div>
 					) : (

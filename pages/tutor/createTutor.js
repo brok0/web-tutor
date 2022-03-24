@@ -4,27 +4,14 @@ import { InputField } from "../../components/ui/InputField";
 import { useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-const specializations = {
-	languages: "Languages",
-	math: "Math",
-	science: "Science",
-	music: "Music",
-	lifeCoaching: "Life Coaching",
-	other: "Other...",
-};
+import { specializations } from "../../services/constants";
 
 export default function CreateTutor() {
-	const options = [];
-
-	for (const item in specializations) {
-		options.push(specializations[item]);
-	}
+	const options = Object.values(specializations);
 
 	//constructing service url service url
 	const baseUrl = useSelector((state) => state.user.baseServiceUrl);
 	const requestUrl = baseUrl + "/tutor/upgradeToTutor";
-
-	const userId = 1;
 
 	const { data: session, status } = useSession();
 	const router = useRouter();

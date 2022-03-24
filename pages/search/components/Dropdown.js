@@ -1,6 +1,40 @@
 import { useState } from "react";
+import useComponentVisible from "../../../hooks/useComponentVisible";
 
-export default function Dropdown({ optionsList }) {
+const OptionList = ({ optionsList, onOptionClick }) => {
+	const { ref, isComponentVisible } = useComponentVisible(true);
+
+	return (
+		<div ref={ref}>
+			{isComponentVisible && (
+				<div
+					className="z-10 origin-top-right absolute right-15 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+					role="menu"
+					aria-orientation="vertical"
+					aria-labelledby="menu-button"
+					tabindex="-1"
+				>
+					<div className="py-1" role="none">
+						{optionsList.map((option) => (
+							<h3
+								className="text-gray-700 block px-4 py-2 text-sm w-full hover:bg-purple-300 "
+								role="menuitem"
+								id={`menu-item-${option}`}
+								onClick={() => {
+									onOptionClick(option);
+								}}
+							>
+								{option}
+							</h3>
+						))}
+					</div>
+				</div>
+			)}
+		</div>
+	);
+};
+
+export default function Dropdown({ optionsList, id, disabled }) {
 	const [isOpened, setOpened] = useState(false);
 	const [selectedOption, setOption] = useState(optionsList[0]);
 
@@ -14,16 +48,21 @@ export default function Dropdown({ optionsList }) {
 
 	return (
 		<div
-			className="relative inline-block text-left pt-2"
+			className={
+				disabled
+					? "opacity-70 relative inline-block text-left pt-2"
+					: " relative inline-block text-left pt-2"
+			}
 			onClick={toggleOptionList}
 		>
 			<div>
 				<button
 					type="button"
 					className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
-					id="menu-button"
+					id={id}
 					aria-expanded="true"
 					aria-haspopup="true"
+					disabled={disabled}
 				>
 					{selectedOption}
 					{/* Heroicon name: solid/chevron-down */}
@@ -53,31 +92,12 @@ export default function Dropdown({ optionsList }) {
         From: "transform opacity-100 scale-100"
         To: "transform opacity-0 scale-95"
     */}
-			{isOpened ? (
-				<div
-					className="z-10 origin-top-right absolute right-15 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-					role="menu"
-					aria-orientation="vertical"
-					aria-labelledby="menu-button"
-					tabindex="-1"
-				>
-					<div className="py-1" role="none">
-						{optionsList.map((option) => (
-							<h3
-								className="text-gray-700 block px-4 py-2 text-sm w-full hover:bg-purple-300 "
-								role="menuitem"
-								id={`menu-item-${option}`}
-								onClick={() => {
-									onOptionClick(option);
-								}}
-							>
-								{option}
-							</h3>
-						))}
-					</div>
-				</div>
-			) : (
-				""
+			{isOpened && (
+				<OptionList
+					isOpened={isOpened}
+					optionsList={optionsList}
+					onOptionClick={onOptionClick}
+				></OptionList>
 			)}
 		</div>
 	);
