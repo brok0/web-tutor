@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CreateConversation } from "./CreateConversation";
-import DateTimePickerModal from "./DateTimePickerModal";
+import CreateLessonModal from "./CreateLessonModal";
 
 export default function TutorCard({ tutor }) {
 	const { name, rating, specialization, description, pricePerLesson, avatar } =
@@ -79,19 +79,11 @@ export default function TutorCard({ tutor }) {
 				</button>
 			</div>
 
-			{modalsOpen.datePickerModal ? (
-				<DateTimePickerModal
-					onClose={closeModals}
-					lesson={specialization}
-					price={price}
-				/>
-			) : (
-				""
+			{modalsOpen.datePickerModal && (
+				<CreateLessonModal onClose={closeModals} tutor={tutor} />
 			)}
-			{modalsOpen.conversationModal ? (
+			{modalsOpen.conversationModal && (
 				<CreateConversation onClose={closeModals} tutor={name} />
-			) : (
-				""
 			)}
 		</div>
 	);
