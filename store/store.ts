@@ -1,10 +1,14 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
-import userReducer from "./appReducer";
+import userReducer from "./userReducer";
+import globalSlice from "./globalReducer";
 
 export function makeStore() {
 	return configureStore({
-		reducer: { user: userReducer },
+		reducer: { 
+			global: globalSlice,
+			user: userReducer 
+		},
 	});
 }
 

@@ -9,8 +9,8 @@ import Link from "next/link";
 export default function CreateTutor() {
   const options = Object.values(specializations);
 
-  //constructing service url service url
-  const baseUrl = useSelector((state) => state.user.baseServiceUrl);
+  //constructing service url
+  const baseUrl = useSelector((state) => state.global.baseServiceUrl);
   const requestUrl = baseUrl + "/tutor/upgradeToTutor";
 
   const { data: session, status } = useSession();
