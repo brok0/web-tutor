@@ -1,35 +1,18 @@
+import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { CreateConversation } from "./CreateConversation";
-import CreateLessonModal from "./CreateLessonModal";
+import { CreateConversation } from "../CreateConversation";
+import CreateLessonModal from "../createLesson/CreateLessonModal";
+import { CardButtons } from "./CardButtons";
+import { cutText } from "./helpers";
 
 export default function TutorCard({ tutor }) {
   const { name, rating, specialization, description, pricePerLesson, avatar } = tutor;
+  const { data: session } = useSession();
 
   const [modalsOpen, setModalsOpen] = useState({
     conversationModal: false,
     datePickerModal: false,
   });
-
-  const cutDescription = () => {
-    const maxLength = 250;
-
-    if (description.length > maxLength) {
-      return description.substring(0, maxLength);
-    } else return description;
-  };
-
-  const openDatePicker = () => {
-    setModalsOpen({
-      ...modalsOpen,
-      datePickerModal: true,
-    });
-  };
-  const openCreateConversations = () => {
-    setModalsOpen({
-      ...modalsOpen,
-      conversationModal: true,
-    });
-  };
 
   const closeModals = () => {
     setModalsOpen({
@@ -37,6 +20,7 @@ export default function TutorCard({ tutor }) {
       datePickerModal: false,
     });
   };
+
   return (
     <div className="container w-full p-2 bg-white rounded m-auto md:justify-between mb-2 md:flex">
       <div className="my-auto mb-2 md:ml-3">
@@ -52,19 +36,14 @@ export default function TutorCard({ tutor }) {
         <h3>
           <strong>Specialization :</strong> {specialization}
         </h3>
-        <p>{cutDescription()}</p>
+        <p>{cutText(description)}</p>
       </div>
-      <div className="flex md:flex-col">
-        <h3>
+      <div>
+        <p>
           <strong>Price: </strong>
           {pricePerLesson}$/hour
-        </h3>
-        <button onClick={openDatePicker} className="w-24 h-8 bg-purple-300 rounded hover:bg-purple-500 m-1 md:my-auto text-xs bold">
-          Buy Lesson
-        </button>
-        <button onClick={openCreateConversations} className="w-24 h-8 bg-gray-300 rounded hover:bg-purple-500 m-1 md:my-auto text-xs bold">
-          Write Message
-        </button>
+        </p>
+        {session && <CardButtons setModalsOpen={setModalsOpen} />}
       </div>
 
       {modalsOpen.datePickerModal && <CreateLessonModal onClose={closeModals} tutor={tutor} />}

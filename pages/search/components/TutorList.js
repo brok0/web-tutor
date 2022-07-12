@@ -1,4 +1,4 @@
-import TutorCard from "./TutorCard";
+import TutorCard from "./tutorCard/TutorCard";
 export default function TutorList({ tutors }) {
   const list = tutors.map((tutor, i) => (
     <li key={i}>
