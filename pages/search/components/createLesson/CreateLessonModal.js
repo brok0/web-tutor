@@ -1,25 +1,31 @@
-import Calendar from "react-calendar";
 import { useState } from "react";
-import "react-datepicker/dist/react-datepicker.css";
-import "react-calendar/dist/Calendar.css";
 import { useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
+import { PickDate } from "./PickDate";
+import { PickTime } from "./PickTime";
 //idea : divide modal into pages:
 //	- Pick day page : Today,tommorow etc
 // 	- Pick Time page
 //  - confirm page
 
 export default function ({ onClose, tutor }) {
-  const { name, rating, specialization, description, pricePerLesson, avatar } = tutor;
+  const { id, specialization, pricePerLesson } = tutor;
+  const { data: session } = useSession();
   const [date, setDate] = useState(new Date());
   const [dateConfirmed, setDateConfirmed] = useState(false);
-  const awailableTime = ["17:00", "18:00", "20:00"]; // should request server after picking date to have these
-  //const { data: session, status } = useSession();
+  const [isSubmitting, setSubmitting] = useState(false);
   //constructing service url
-  const baseUrl = useSelector((state) => state.user.baseServiceUrl);
+  const baseUrl = useSelector((state) => state.global.baseServiceUrl);
+  // const userData = useAppSelector(selectUser);
   const requestUrl = baseUrl + "/lesson/createLesson";
 
   const createLesson = () => {
-    const data = { price: pricePerLesson, date: date };
+    const data = {
+      price: pricePerLesson,
+      date: date,
+      studentEmail: session.user.email,
+      tutorId: id,
+    };
 
     fetch(requestUrl, {
       method: "POST",
@@ -32,12 +38,9 @@ export default function ({ onClose, tutor }) {
       .then((res) => {
         setSubmitting(false);
         setRequestStatus(res.message);
-
-        setTimeout(() => {
-          router.push("/profile");
-        }, 2500);
       });
   };
+
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
       <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -53,25 +56,7 @@ export default function ({ onClose, tutor }) {
               <h3 className="text-lg leading-6 font-medium text-gray-900 border-b-2 mb-2" id="modal-title">
                 Buy Lesson in {specialization} for <b>{pricePerLesson}$</b>
               </h3>
-              <div className="m-1">
-                {!dateConfirmed ? (
-                  <div>
-                    <h3 className="text-base text-center">Pick a Date</h3>
-                    <Calendar value={date} onChange={setDate} minDate={new Date()} className="m-auto " />
-                  </div>
-                ) : (
-                  <div className="mt-16">
-                    <h3 className="font-semibold mb-4 text-center">Tutor available at:</h3>
-                    <div className="flex items-center justify-center">
-                      {awailableTime.map((time) => (
-                        <div className="border bg-purple-300 rounded-full flex p-2 hover:bg-purple-500 cursor-pointer">
-                          <p className="m-auto font-semibold">{time}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+              <div className="m-1">{!dateConfirmed ? <PickDate date={date} setDate={setDate} /> : <PickTime />}</div>
             </div>
           </div>
           <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
