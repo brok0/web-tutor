@@ -80,9 +80,12 @@ model Message {
 }
 
 model Lesson {
-  id    Int      @id @default(autoincrement())
-  date  DateTime
-  price Decimal
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  price     Decimal
+  state     String   @default("Active")
+  topic     String
+  tutorName String
 
   studentId String
   student   User   @relation(fields: [studentId], references: [id])
