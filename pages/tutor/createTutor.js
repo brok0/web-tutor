@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { specializations } from "../../services/constants";
 import Link from "next/link";
+import { MainLayout } from "../../layouts/MainLayout";
 export default function CreateTutor() {
   const options = Object.values(specializations);
 
@@ -18,7 +19,7 @@ export default function CreateTutor() {
   const [requestState, setRequestStatus] = useState("");
 
   return (
-    <div>
+    <MainLayout>
       {
         requestState ? <h1>{requestState}. Redirecting to your profile...</h1> : "" //TODO: Add success icon
       }
@@ -83,6 +84,6 @@ export default function CreateTutor() {
           </Form>
         )}
       </Formik>
-    </div>
+    </MainLayout>
   );
 }

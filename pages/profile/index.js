@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
-import Header from "../../components/Header";
 import Login from "../../components/Login";
-import PageHeader from "./components/PageHeader";
+import { ProfileLayout } from "../../layouts/ProfileLayout";
+
 function ProfilePage() {
   const { data: session, status } = useSession({
     required: true,
@@ -10,12 +10,7 @@ function ProfilePage() {
     },
   });
 
-  return (
-    <div className="md:px-8 sm:px-1">
-      <Header />
-      <PageHeader />
-    </div>
-  );
+  return <ProfileLayout pageTitle={"Profile"} />;
 }
 
 ProfilePage.auth = {
