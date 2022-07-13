@@ -8,27 +8,29 @@ export default async (req, res) => {
   //const { value, asc } = orderBy; //TODO:  sorting
   try {
     let tutors;
-    console.log(parceInt(minPrice));
-    if (Number(minPrice) >= 50) {
+    const onePrice = minPrice.replace(/>/g, "");
+    console.log(onePrice, maxPrice);
+
+    if (onePrice >= 50 && !maxPrice) {
+      tutors = await prisma.tutor.findMany({
+        where: {
+          specialization: specialization,
+          pricePerLesson: {
+            gte: Number(onePrice),
+          },
+        },
+      });
+    } else {
       tutors = await prisma.tutor.findMany({
         where: {
           specialization: specialization,
           pricePerLesson: {
             gte: Number(minPrice),
+            lte: Number(maxPrice),
           },
         },
       });
     }
-
-    tutors = await prisma.tutor.findMany({
-      where: {
-        specialization: specialization,
-        pricePerLesson: {
-          gte: Number(minPrice),
-          lte: Number(maxPrice),
-        },
-      },
-    });
 
     console.log(tutors);
     res.status(200).json(tutors);
