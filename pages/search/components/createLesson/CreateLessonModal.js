@@ -9,7 +9,8 @@ import { PickTime } from "./PickTime";
 //  - confirm page
 
 export default function ({ onClose, tutor }) {
-  const { id, specialization, pricePerLesson } = tutor;
+  const { id, specialization, pricePerLesson, name } = tutor;
+  console.log(tutor);
   const { data: session } = useSession();
   const [date, setDate] = useState(new Date());
   const [dateConfirmed, setDateConfirmed] = useState(false);
@@ -25,7 +26,11 @@ export default function ({ onClose, tutor }) {
       date: date,
       studentEmail: session.user.email,
       tutorId: id,
+      topic: specialization,
+      tutorName: name,
     };
+
+    setSubmitting(true);
 
     fetch(requestUrl, {
       method: "POST",
@@ -37,7 +42,9 @@ export default function ({ onClose, tutor }) {
       .then((res) => res.json())
       .then((res) => {
         setSubmitting(false);
-        setRequestStatus(res.message);
+        if (res.code === 200) {
+          onClose();
+        }
       });
   };
 
@@ -65,8 +72,9 @@ export default function ({ onClose, tutor }) {
                 type="button"
                 className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-purple-300 text-base font-medium text-black hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
                 onClick={createLesson}
+                disabled={isSubmitting}
               >
-                Buy Lesson
+                {isSubmitting ? "..." : "Buy Lesson"}
               </button>
             ) : (
               <button
