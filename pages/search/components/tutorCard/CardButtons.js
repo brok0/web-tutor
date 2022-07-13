@@ -1,4 +1,4 @@
-export const CardButtons = ({ setModalsOpen }) => {
+export const CardButtons = ({ setModalsOpen, modalsOpen }) => {
   const openDatePicker = () => {
     setModalsOpen({
       ...modalsOpen,

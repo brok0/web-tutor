@@ -43,7 +43,7 @@ export default function TutorCard({ tutor }) {
           <strong>Price: </strong>
           {pricePerLesson}$/hour
         </p>
-        {session && <CardButtons setModalsOpen={setModalsOpen} />}
+        {session && <CardButtons setModalsOpen={setModalsOpen} modalsOpen={modalsOpen} />}
       </div>
 
       {modalsOpen.datePickerModal && <CreateLessonModal onClose={closeModals} tutor={tutor} />}
