@@ -14,7 +14,7 @@ export default function Header() {
         <Link href="/search" className="inline-block hover:font-bold underline">
           Find tutor
         </Link>
-        <Link href="tutor/createTutor" className="inline-block ">
+        <Link href="/tutor/createTutor" className="inline-block ">
           <p className="inline-block cursor-pointer">Become tutor</p>
         </Link>
         <div className="ml-auto mr-5 font-semibold">{isLoggedIn ? <Link href="/profile">Profile</Link> : <Link href="/profile">Sign In</Link>}</div>
