@@ -3,10 +3,11 @@ import Dropdown from "./Dropdown";
 import { specializations } from "../../../services/constants";
 import { useSelector } from "react-redux";
 
+const priceOptions = ["5$-10$", "10$-20$", "20$-50$", ">$50"];
+const timeOptions = ["Morning", "Evening", "Noon"];
+
 export default function SearchBar({ updateTutors }) {
   const learnOptions = Object.values(specializations);
-  const priceOptions = ["5$-10$", "10$-20$", "20$-50$", ">$50"];
-  const timeOptions = ["Morning", "Evening", "Noon"];
   const baseUrl = useSelector((state) => state.global.baseServiceUrl);
 
   const handleSearch = () => {
@@ -24,7 +25,6 @@ export default function SearchBar({ updateTutors }) {
       time: document.getElementById("time-dropdown").textContent,
     };
 
-    console.log(selectedOptions);
     fetch(requestUrl, {
       body: JSON.stringify(selectedOptions),
       method: "POST",

@@ -9,8 +9,7 @@ import { PickTime } from "./PickTime";
 //  - confirm page
 
 export default function ({ onClose, tutor }) {
-  const { id, specialization, pricePerLesson, name } = tutor;
-  console.log(tutor);
+  const { id, specialization, pricePerLesson, user } = tutor;
   const { data: session } = useSession();
   const [date, setDate] = useState(new Date());
   const [dateConfirmed, setDateConfirmed] = useState(false);
@@ -27,7 +26,7 @@ export default function ({ onClose, tutor }) {
       studentEmail: session.user.email,
       tutorId: id,
       topic: specialization,
-      tutorName: name,
+      tutorName: user.name,
     };
 
     setSubmitting(true);
@@ -63,7 +62,7 @@ export default function ({ onClose, tutor }) {
               <h3 className="text-lg leading-6 font-medium text-gray-900 border-b-2 mb-2" id="modal-title">
                 Buy Lesson in {specialization} for <b>{pricePerLesson}$</b>
               </h3>
-              <div className="m-1">{!dateConfirmed ? <PickDate date={date} setDate={setDate} /> : <PickTime />}</div>
+              <div className="m-1">{!dateConfirmed ? <PickDate date={date} setDate={setDate} /> : <PickTime date={date} setDate={setDate} />}</div>
             </div>
           </div>
           <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
