@@ -6,7 +6,7 @@ import { CardButtons } from "./CardButtons";
 import { cutText } from "./helpers";
 
 export default function TutorCard({ tutor }) {
-  const { name, rating, specialization, description, pricePerLesson, avatar } = tutor;
+  const { user, rating, specialization, description, pricePerLesson, avatar } = tutor;
   const { data: session } = useSession();
 
   const [modalsOpen, setModalsOpen] = useState({
@@ -29,7 +29,7 @@ export default function TutorCard({ tutor }) {
           <h4>{rating} &nbsp;</h4> <img src="./star.png" className="w-4 h-4 my-auto"></img>
         </div>
         <h4>
-          <strong>{name}</strong>
+          <strong>{user.name}</strong>
         </h4>
       </div>
       <div className="mb-2 md:w-2/3">
@@ -47,7 +47,7 @@ export default function TutorCard({ tutor }) {
       </div>
 
       {modalsOpen.datePickerModal && <CreateLessonModal onClose={closeModals} tutor={tutor} />}
-      {modalsOpen.conversationModal && <CreateConversation onClose={closeModals} tutor={name} />}
+      {modalsOpen.conversationModal && <CreateConversation onClose={closeModals} tutor={tutor} />}
     </div>
   );
 }

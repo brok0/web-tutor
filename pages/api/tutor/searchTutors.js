@@ -29,6 +29,9 @@ export default async (req, res) => {
             lte: Number(maxPrice),
           },
         },
+        include: {
+          user: true,
+        },
       });
     }
 
