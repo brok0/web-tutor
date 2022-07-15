@@ -24,7 +24,7 @@ export default function Lesson({ lesson }) {
   };
 
   return (
-    <div className="container w-11/12 rounded border-black border-2 m-2 p-2 cursor-pointer hover:bg-gray-200 md:flex md:justify-between" onClick={toggleDetailsModal}>
+    <div className="container w-11/12 rounded border-purple-300 border-4 m-2 p-2 cursor-pointer hover:bg-gray-200 md:flex md:justify-between" onClick={toggleDetailsModal}>
       <div>
         <h2>
           <strong>Tutor</strong> : {tutorName}

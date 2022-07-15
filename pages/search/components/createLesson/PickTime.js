@@ -3,8 +3,6 @@ import React, { useState } from "react";
 const awailableTime = ["17:00", "18:00", "20:00"]; // should request server after picking date to have these
 
 export const PickTime = ({ date, setDate }) => {
-  //const [selectedTime,setSelectedTime] = useState("");
-
   const addTime = (e) => {
     const dateCopy = date;
     const timeParts = e.target.textContent.split(":");

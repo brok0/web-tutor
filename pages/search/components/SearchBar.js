@@ -39,7 +39,7 @@ export default function SearchBar({ updateTutors }) {
   };
 
   return (
-    <div className="container mx-auto mt-5 border-2 border-gray-200 rounded">
+    <div className="container mx-auto mt-5 border-2 border-gray-200 rounded bg-purple-200">
       <div className="flex flex-col divide-black md:justify-around md:flex-row ">
         <div className="m-auto md:py-2">
           <h3>I want to learn</h3>
@@ -54,7 +54,7 @@ export default function SearchBar({ updateTutors }) {
           <Dropdown optionsList={timeOptions} id="time-dropdown" disabled={true}></Dropdown>
         </div>
         <div className="m-auto my-2 md:my-auto">
-          <button className="w-16 h-8 bg-purple-300 rounded hover:bg-purple-500 my-auto font-semibold" onClick={handleSearch}>
+          <button className="w-16 h-8 bg-white border-purple-400 border-2 rounded hover:bg-purple-500 my-auto font-semibold" onClick={handleSearch}>
             Search
           </button>
         </div>
