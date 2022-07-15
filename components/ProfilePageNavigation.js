@@ -12,8 +12,8 @@ export default function ProfilePageNavigation() {
   };
 
   return (
-    <div className="relative bg-gray-500">
-      <div className="flex flex-col items-center border-b-2 border-gray-100 px-6 md:flex-row md:justify-start md:space-x-10">
+    <div className="relative bg-purple-500">
+      <div className="flex flex-col items-center border-b-2 px-6 md:flex-row md:justify-start md:space-x-10 text-white">
         <Link href="/profile/messenger" className="inline-block">
           Messages
         </Link>
