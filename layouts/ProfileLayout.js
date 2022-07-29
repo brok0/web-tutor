@@ -1,11 +1,12 @@
 import ProfilePageNavigation from "../components/ProfilePageNavigation";
 import Header from "../components/Header";
 import Head from "next/head";
+const fallbackTitle = "Web Tutor | Profile";
 export const ProfileLayout = ({ pageTitle, children }) => {
   return (
     <div>
       <Head>
-        <title>{pageTitle || "Web Tutor | Profile"}</title>
+        <title>{pageTitle || fallbackTitle}</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -15,7 +16,7 @@ export const ProfileLayout = ({ pageTitle, children }) => {
           crossorigin="anonymous"
         />
       </Head>
-      <main className="md:px-8 sm:px-1">
+      <main className="md:px-8 sm:px-1 bg-gray-100 h-screen">
         <Header />
         <ProfilePageNavigation />
         {children}

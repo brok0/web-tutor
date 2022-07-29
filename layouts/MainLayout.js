@@ -1,10 +1,11 @@
 import Header from "../components/Header";
 import Head from "next/head";
+const fallbackTitle = "Web Tutor";
 export const MainLayout = ({ pageTitle, children }) => {
   return (
     <div>
       <Head>
-        <title>{pageTitle || "Web Tutor"}</title>
+        <title>{pageTitle || fallbackTitle}</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -14,7 +15,7 @@ export const MainLayout = ({ pageTitle, children }) => {
           crossorigin="anonymous"
         />
       </Head>
-      <main className="md:px-8 sm:px-1">
+      <main className="md:px-8 sm:px-1 bg-gray-100 h-screen">
         <Header />
         {children}
       </main>
