@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 export default async function handler(req, res) {
-  const { studentEmail, tutorId, date, price, topic, tutorName } = req.body;
+  const { studentEmail, tutorId, date, price, topic, tutorName, studentName } = req.body;
   console.log(req.body);
   const createdLesson = await prisma.lesson.create({
     data: {
@@ -10,6 +10,7 @@ export default async function handler(req, res) {
       price,
       topic,
       tutorName,
+      studentName,
       student: {
         connect: {
           email: studentEmail,

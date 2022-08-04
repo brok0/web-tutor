@@ -3,12 +3,10 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 export default async function (req, res) {
   const { userEmail } = req.body;
-  console.log(req.body);
 
   try {
     const user = await prisma.user.findFirst({ where: { email: userEmail } });
-
-    let lessons;
+    let lessons = [];
 
     lessons = await prisma.lesson.findMany({
       where: {
@@ -16,17 +14,21 @@ export default async function (req, res) {
       },
     });
 
-    if (!lessons) {
+    if (!lessons.length) {
+      //if not found lesson for student, assume its tutor searching and search with tutor id
+      // * TODO: probs need better db design
+      const tutor = await prisma.tutor.findFirst({ where: { userId: user.id } });
+
       lessons = await prisma.lesson.findMany({
         where: {
-          tutorId: user.id,
+          tutorId: tutor.id,
         },
       });
     }
 
-    console.log(lessons);
     res.status(200).json(lessons);
   } catch (error) {
-    res.status(400).json({ error: "Error occured" });
+    console.log(error);
+    res.status(400).json({ message: "Error occured", error });
   }
 }
