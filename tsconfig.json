@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/tutor/createTutor.js", "pages/tutor/types.js"  ],
+, "pages/tutor/createTutor.js", "pages/tutor/types.js", "pages/api/lesson/cancelLeson.js"  ],
   "exclude": [
     "node_modules"
   ],
