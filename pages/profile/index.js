@@ -3,6 +3,14 @@ import Login from "../../components/Login";
 import SignOut from "../../components/SignOut";
 import { ProfileLayout } from "../../layouts/ProfileLayout";
 
+function TutorSection() {
+  return (
+    <div className="border rounded bg-gray-200 h-2/5 mb-6 p-4">
+      <p>Your students</p>
+    </div>
+  );
+}
+
 function ProfilePage() {
   const { data: session, status } = useSession({
     required: true,
@@ -27,7 +35,7 @@ function ProfilePage() {
           </div>
         </div>
         <div>
-          <div className="border rounded bg-gray-200 h-2/5 mb-6"></div>
+          <TutorSection />
           <div className="border rounded bg-gray-200 h-2/5"></div>
         </div>
       </div>

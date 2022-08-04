@@ -17,7 +17,7 @@ function Messenger() {
   };
 
   return (
-    <ProfileLayout pageTitle={"Messenger"}>
+    <ProfileLayout pageTitle="Messenger">
       <div className="flex mx-3 my-1">
         <ConversationList conversations={conversations} handleChange={changeConversation} />
         <div className="ml-2">
