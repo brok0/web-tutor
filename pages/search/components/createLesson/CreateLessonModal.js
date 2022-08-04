@@ -16,7 +16,6 @@ export default function ({ onClose, tutor }) {
   const [isSubmitting, setSubmitting] = useState(false);
   //constructing service url
   const baseUrl = useSelector((state) => state.global.baseServiceUrl);
-  // const userData = useAppSelector(selectUser);
   const requestUrl = baseUrl + "/lesson/createLesson";
 
   const createLesson = () => {
@@ -27,6 +26,7 @@ export default function ({ onClose, tutor }) {
       tutorId: id,
       topic: specialization,
       tutorName: user.name,
+      studentName: session.user.name,
     };
 
     setSubmitting(true);

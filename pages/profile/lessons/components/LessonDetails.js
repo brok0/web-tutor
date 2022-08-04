@@ -1,7 +1,15 @@
-import { useState } from "react";
+import CONSTANTS from "../constants";
+import { cancelLesson } from "./service";
 
 export default function LessonDetails({ onClose, lesson }) {
-  const { tutorName, topic, date, state } = lesson;
+  const { id, tutorName, topic, date, state } = lesson;
+
+  const onCancelLesson = () => {
+    cancelLesson(id);
+
+    //update current lesson on page
+  };
+
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
       <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -26,16 +34,26 @@ export default function LessonDetails({ onClose, lesson }) {
                 <strong>Tutor</strong> : {tutorName}
               </h4>
 
-              <p>//TODO : Add links,comments,chat etc</p>
-
+              {/* //TODO : Add links,comments,chat etc */}
+            </div>
+          </div>
+          <div className="p-2 bg-gray-200">
+            <button
+              type="button"
+              className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+              onClick={onClose}
+            >
+              Close
+            </button>
+            {lesson.state !== CONSTANTS.lessonStates.cancelled && (
               <button
                 type="button"
-                className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                onClick={onClose}
+                className="text-white mt-3 w-full inline-flex justify-center bg-red-500 rounded-md border border-gray-300 shadow-sm px-4 py-2 text-base font-medium hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                onClick={onCancelLesson}
               >
-                Close
+                <p className="">Cancel lesson</p>
               </button>
-            </div>
+            )}
           </div>
         </div>
       </div>
